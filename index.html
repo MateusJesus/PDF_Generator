@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
   <title>Juntar Imagens e PDFs</title>
 
   <!-- Icone da pagina -->
@@ -14,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="/manifest.json">
 
   <link href="./index.css" rel="stylesheet">
 
@@ -85,6 +88,15 @@
     </div>
   </div>
   <script src="/index.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((reg) => console.log('Service Worker registrado com sucesso!'))
+          .catch((err) => console.error('Erro ao registrar Service Worker:', err));
+      });
+    }
+  </script>
 </body>
 
 </html>
