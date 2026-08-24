@@ -1,0 +1,422 @@
+/* 1. Tema Claro Padrão */
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --primary-light: #eeef2;
+    --bg: #f8fafc;
+    --bg-gradient-1: rgba(79, 70, 229, 0.08);
+    --bg-gradient-2: rgba(99, 102, 241, 0.05);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-border: rgba(255, 255, 255, 0.8);
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --drop-bg: #f8fafc;
+    --drop-border: #cbd5e1;
+    --item-bg: #ffffff;
+    --item-hover-border: #cbd5e1;
+    --btn-sec-bg: #f1f5f9;
+    --btn-sec-text: #334155;
+    --btn-sec-hover: #e2e8f0;
+    --danger: #ef4444;
+    --danger-bg: #fef2f2;
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --shadow-main: 0 20px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
+    --shadow-item: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* 2. Tema Escuro (Ativado via classe no <html>) */
+html.dark {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-light: rgba(99, 102, 241, 0.15);
+    --bg: #0f172a;
+    --bg-gradient-1: rgba(99, 102, 241, 0.12);
+    --bg-gradient-2: rgba(79, 70, 229, 0.08);
+    --card-bg: rgba(30, 41, 59, 0.85);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --drop-bg: #1e293b;
+    --drop-border: #475569;
+    --item-bg: #1e293b;
+    --item-hover-border: #64748b;
+    --btn-sec-bg: #334155;
+    --btn-sec-text: #f1f5f9;
+    --btn-sec-hover: #475569;
+    --danger: #f87171;
+    --danger-bg: rgba(239, 68, 68, 0.15);
+    --shadow-main: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+    --shadow-item: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+* {
+    box-sizing: border-box;
+    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(at 0% 0%, var(--bg-gradient-1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, var(--bg-gradient-2) 0px, transparent 50%);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.container {
+    width: min(800px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    box-shadow: var(--shadow-main);
+}
+
+h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text-main);
+}
+
+.subtitle {
+    margin: 0 0 28px;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.drop-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--drop-border);
+    border-radius: var(--radius-md);
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    background: var(--drop-bg);
+}
+
+.drop-area:hover,
+.drop-area.dragover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.drop-area strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.drop-area span {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.drop-area span:last-child {
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--item-bg);
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+#fileInput {
+    display: none;
+}
+
+.toolbar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 24px 0;
+}
+
+button {
+    border: 0;
+    border-radius: var(--radius-sm);
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.primary:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+}
+
+.secondary {
+    background: var(--btn-sec-bg);
+    color: var(--btn-sec-text);
+    border: 1px solid var(--border-color);
+}
+
+.secondary:hover {
+    background: var(--btn-sec-hover);
+    color: var(--text-main);
+}
+
+.danger {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.settings {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    padding: 16px 20px;
+    background: var(--drop-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+}
+
+.settings label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--item-bg);
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-main);
+    outline: none;
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.hint {
+    color: var(--text-muted);
+    font-size: 13px;
+    flex: 1 1 100%;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+#fileList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--item-bg);
+    cursor: grab;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.file-item:hover {
+    border-color: var(--item-hover-border);
+    box-shadow: var(--shadow-item);
+    transform: translateY(-1px);
+}
+
+.file-item:active {
+    cursor: grabbing;
+}
+
+.number {
+    min-width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.file-icon {
+    font-size: 20px;
+}
+
+.file-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.file-name {
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-main);
+}
+
+.file-type {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.remove {
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.remove:hover {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.empty {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 32px;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    background: var(--drop-bg);
+}
+
+.progress-wrap {
+    display: none;
+    margin-top: 24px;
+}
+
+.progress {
+    width: 100%;
+    height: 8px;
+    border-radius: 10px;
+    background: var(--border-color);
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--primary);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+#status {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.footer-info {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+#generateButton {
+    background-color: rgb(60, 161, 60);
+    box-shadow: 0 4px 12px rgba(70, 229, 91, 0.25);
+}
+
+#generateButton:hover {
+    background-color: rgb(23, 107, 23);
+    box-shadow: 0 6px 16px rgba(7, 114, 50, 0.35);
+}
+
+.hamburger {
+  width: 40px;
+  height: 35px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+  background: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.hamburger hr {
+  margin: 0;
+  border: none;
+  height: 2px;
+  width: 100%;
+  background-color: var(--primary);
+  border-radius: 2px;
+}
+
+@media (max-width: 600px) {
+    .card {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .toolbar button {
+        flex: 1;
+    }
+}

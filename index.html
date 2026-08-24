@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juntar Imagens e PDFs</title>
+
+  <!-- Icone da pagina -->
+  <link rel="icon" type="image/x-icon"
+    href="https://static.vecteezy.com/system/resources/previews/023/234/824/non_2x/pdf-icon-red-and-white-color-for-free-png.png">
+
+  <!-- Fonte Inter do Google Fonts para uma tipografia moderna -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link href="./index.css" rel="stylesheet">
+
+  <!-- PDF-LIB: cria e manipula PDFs diretamente no navegador -->
+  <script src="./lib/pdf-lib.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <div style="display: flex; justify-content: space-between;">
+        <h1>📄 Juntar arquivos em um PDF</h1>
+        <button class="secondary" id="themeToggle" type="button">
+          <span id="themeIcon">🌙</span> <span id="themeText">Modo Escuro</span>
+        </button>
+      </div>
+      <p class="subtitle">
+        Adicione imagens e PDFs e transforme tudo em um único arquivo PDF.
+      </p>
+
+      <label class="drop-area" id="dropArea" for="fileInput">
+        <strong>Arraste os arquivos aqui</strong>
+        <span>ou clique para selecionar imagens e PDFs</span>
+        <span>JPG, JPEG, PNG, WEBP, GIF e PDF</span>
+      </label>
+
+      <input id="fileInput" type="file" multiple accept="image/*,.pdf,application/pdf">
+
+      <div class="settings">
+        <label for="quality">Qualidade das imagens:</label>
+
+        <select id="quality">
+          <option value="0.65">Média</option>
+          <option value="0.80">Boa</option>
+          <option value="0.92">Alta</option>
+        </select>
+
+        <span class="hint">
+          PDFs são mantidos com o tamanho original. Imagens viram páginas no tamanho proporcional da própria imagem.
+        </span>
+      </div>
+
+      <div id="fileList">
+        <div class="empty">Nenhum arquivo selecionado.</div>
+      </div>
+
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div id="status">Preparando...</div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between;" class="toolbar">
+        <div>
+
+          <button class="primary" id="addButton">＋ Adicionar arquivos</button>
+          <button class="secondary" id="clearButton">Limpar tudo</button>
+        </div>
+        <button class="primary" id="generateButton">📥 Gerar PDF</button>
+      </div>
+
+      <div class="footer-info">
+        🔒 O processamento é feito no seu navegador. Os arquivos não são enviados para um servidor.
+        <br>
+        💡 Você pode arrastar os itens da lista para alterar a ordem antes de gerar o PDF.
+      </div>
+    </div>
+  </div>
+  <script src="/index.js"></script>
+</body>
+
+</html>
