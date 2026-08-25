@@ -387,27 +387,35 @@ select:focus {
 }
 
 .hamburger {
-  width: 40px;
-  height: 35px;
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 8px;
-  background: transparent;
-  transition: background-color 0.2s ease;
+    width: 40px;
+    height: 35px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 8px;
+    background: transparent;
+    transition: background-color 0.2s ease;
 }
 
 .hamburger hr {
-  margin: 0;
-  border: none;
-  height: 2px;
-  width: 100%;
-  background-color: var(--primary);
-  border-radius: 2px;
+    margin: 0;
+    border: none;
+    height: 2px;
+    width: 100%;
+    background-color: var(--primary);
+    border-radius: 2px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+    button {
+        padding: 8px;
+    }
+
+    button:active {
+        transform: scale(0.98);
+    }
+
     .card {
         padding: 20px;
     }
@@ -417,6 +425,29 @@ select:focus {
     }
 
     .toolbar button {
-        flex: 1;
+        width: 100%;
+    }
+
+    .toolbar div{
+        display: flex;
+        height: 35px;
+        gap: 10px;
+        
+    }
+
+    .toolbar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #themeText{
+        height: 40px;
+        width: 40px;
+        display: none;
+    }
+
+    #themeToggle{
+        height: 40px;
+        width: 40px;
     }
 }
