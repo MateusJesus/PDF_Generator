@@ -1,11 +1,11 @@
 const CACHE_NAME = 'meu-site-offline-v1';
 // Lista de arquivos necessários para o site funcionar offline
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/style.css', // adicione o caminho do seu CSS se for externo
-  '/script.js', // adicione o caminho dos seus scripts
-  '/lib/pdf-lib.min.js' // bibliotecas externas
+  './',
+  './index.html',
+  './index.css', // adicione o caminho do seu CSS se for externo
+  './index.js', // adicione o caminho dos seus scripts
+  './lib/pdf-lib.min.js' // bibliotecas externas
 ];
 
 // Instala o Service Worker e baixa os arquivos para o cache
